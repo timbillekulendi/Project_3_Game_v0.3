@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html>
+<!-- 
+	Timbille Kulendi
+	 22 October, 2014
+	 Introduction to Programming
+	 Project 3 - Game v0.3 
+-->
+   <head>
+      <title>
+         Maze Sprinter 
+      </title>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <a href="mailto:timbille.kulendi1@marist.edu"> Click here for help</a>
+      <script type="text/javascript">
+         //
+         // Global Variables
+         //         
+         var currentLoc = 0;
+         var score = 0;
+         var navigationErrorCount = 0;
+         var sarcasmThreshold = 5;
+         
+         var hasVisitedLoc0 = false;
+         var hasVisitedLoc1 = false;
+         var hasVisitedLoc2 = false;
+         var hasVisitedLoc3 = false;
+         var hasVisitedLoc4 = false;
+         var hasVisitedLoc5 = false;
+         var hasVisitedLoc6 = false;  
+                  
+         //
+         // Initialization
+         //
+         function init() {
+            look();
+         }
+         
+         //
+         // Directional Button Event Handlers
+         //         
+         function btnNorth_click() {
+            if (currentLoc === 0) {
+               currentLoc = 4;
+               look();               
+            } else {
+              if (currentLoc === 1) {
+                 currentLoc = 0;
+                 look();            
+            } else {
+			  if (currentLoc === 6) {
+                 currentLoc = 2;
+                 look();      	               
+            } 
+                else {
+                 navigationError(); 
+              }
+            }            
+            }
+         }
+
+         function btnSouth_click() {
+            if (currentLoc === 0) {
+               currentLoc = 1;
+               look();
+            } else {
+              if (currentLoc === 2) {
+                 currentLoc = 6;
+                 look();
+              } else {
+			   if (currentLoc === 4) {
+                 currentLoc = 0;
+                 look();           
+              } else {
+              
+                 navigationError(); 
+              }
+            }
+         }
+         }
+
+         function btnEast_click() {
+            if (currentLoc === 0) {
+               currentLoc = 3;
+               look();
+            } else {
+              if (currentLoc === 2) {
+                 currentLoc = 3;
+                 look();
+              } else {
+               if (currentLoc === 5) {
+                 currentLoc = 4;
+                 look();
+              } else {
+                 navigationError(); 
+              }
+            }
+         }
+         }
+
+         function btnWest_click() {
+            if (currentLoc === 0) {
+               currentLoc = 2;
+               look();
+            } else {
+              if (currentLoc === 3) {
+                 currentLoc = 0;
+                 look();
+              } else {
+               if (currentLoc === 4) {
+                 currentLoc = 5;
+                 look();
+              } else {
+                 navigationError(); 
+              }
+            }
+         }
+         }
+         //
+         //Event handlers for each location
+         //
+         
+		function theGlades() {
+			var message = "You awake unconscious in the Glade, a square shaped land mass surrounded by towering walls, with no memories except for your name. Within the glades is a whole community on its own with the little population calling themselves Gladers. You are told by the Gladers that the Glade is surrounded by a gigantic mechanical maze with mechanical creatures referred to as Grievers roaming at night. Every day when the gates open a group of two go out mapping the maze which changes its pattern every night trying to solve the maze, a task they have been trying to complete for two years. Supplies are brought to the Glade every week; whereas a new boy is sent through an elevator called the Box once every month (that's how you end up here). The day after you arrive in the Glade, a girl is sent with a message that read *this is the last one ever*, meaning unless the Gladers could find a way out of the Glade fast enough they would all die! That night, the gates leading out to the maze do not close and the Grievers make their way into the Glades killing a majority of the Gladers before retreating back into the maze. You are now being blamed for all this misfortune and have the task of solving the maze before anyone else is killed. Use the directional buttons below to navigate about the Glades. The destiny of the remaining Gladers is in your grasps. May the odds be in your favour.";
+			displayMessage(message);
+		}
+		function sector1() {
+			var message = "1. You've been going through the maze for hours and end up in Thornhill, an enormous unkept plantation full of venomous plants.";
+			displayMessage(message);		
+		}
+		function sector2() {
+			var message = "2. The night sky begins to dawn, you begin to hear the long doleful cry of the Grievers fill the air. You don't want to end up one on one with a Griever. You still have time to save yourself!";
+			displayMessage(message);
+		}
+		function sector3() {
+			var message = "3. You are moving quickly towards what appears to be a opening to a whole new sector which could lead to the exit point of the maze. There is a sudden force restraining you from moving any further, You realise you are stuck in quick sand and need to work something out fast before you are completely submerged. Luckily you grab hold of some vines and pull yourself to safety. Luck seems to be on your side.";
+			displayMessage(message);		
+		}
+		function sector4() {
+			var message = "Sector 4";
+			displayMessage(message);
+		}
+		function sector5() {
+			var message = "Sector 5"; 
+			displayMessage(message);
+		}
+		function sector6() {
+			var message = "Desperate to get out of this maze of misery, you run deeper into the maze in search for an exit. May this have been a wrong call?";
+			displayMessage(message);
+		}
+                  
+         //
+         // Story / Locale Functions
+         //
+         function look() {
+         	document.getElementById("North").disabled = true;
+         	document.getElementById("South").disabled = true;
+         	document.getElementById("East").disabled = true;
+         	document.getElementById("West").disabled = true;
+            	switch(currentLoc) {
+               		case 0: theGlades();
+               			document.getElementById("North").disabled = false;
+               			document.getElementById("South").disabled = false;
+               			document.getElementById("East").disabled = false;
+               			document.getElementById("West").disabled = false;
+                       break;
+               		case 1: sector1();
+               			document.getElementById("North").disabled = false;
+                       break; 
+               		case 2: sector2();
+               			document.getElementById("South").disabled = false;
+               			document.getElementById("East").disabled = false;
+                       break;
+               		case 3: sector3();
+               			document.getElementById("West").disabled = false;
+                       break;
+               		case 4: sector4();
+               			document.getElementById("South").disabled = false;
+               			document.getElementById("West").disabled = false;
+                       break;
+               		case 5:  sector5();    
+               			document.getElementById("East").disabled = false;
+                       break;
+               		case 6: sector6();
+               			document.getElementById("North").disabled = false;
+               		   break;	
+               		default: "You can't go there!! *Evil Laugh*";
+            }
+            checkScore();
+            desc = desc + "\n" + "Score: " + score ;
+            displayMessage(desc);
+         }
+
+         function navigationError() {
+            navigationErrorCount = navigationErrorCount + 1;
+            if (navigationErrorCount < sarcasmThreshold) {
+               displayMessage("You can't go there!! *Evil Laugh*");
+            } else {
+               displayMessage("You really want to die mate! WTF");
+            }            
+         }
+
+         function checkScore() {
+            if (! hasVisitedLoc0) {            
+               if (currentLoc === 0) {
+                  score = score + 5;
+                  hasVisitedLoc0 = true;
+               }
+            } else if ( (! hasVisitedLoc1) && (currentLoc === 1) ) {            
+                  score = score + 5;
+                  hasVisitedLoc1 = true;
+            } else if ( (! hasVisitedLoc2) && (currentLoc === 2) ) {            
+                  score = score + 5;
+                  hasVisitedLoc2 = true;
+            } else if ( (! hasVisitedLoc3) && (currentLoc === 3) ) {            
+                  score = score + 5;
+                  hasVisitedLoc3 = true;
+            } else if ( (! hasVisitedLoc4) && (currentLoc === 4) ) {            
+                  score = score + 5;
+                  hasVisitedLoc4 = true;
+            } else if ( (! hasVisitedLoc5) && (currentLoc === 5) ) {
+            	  score = score + 5;
+            	  hasVisitedLoc5 = true; 
+            } else if ( (! hasVisitedLoc6) && (currentLoc === 6) ) {
+            	  score = score + 5;
+            	  hasVisitedLoc6 = true;
+            }          
+         }
+         
+         function btnGo_click () {
+          	var playerInput = document.getElementById("txtCommand").value;
+          	if (playerInput === "n"|| playerInput==="N" || playerInput === "north") {
+          		btnNorth_click();
+          	} else if (playerInput === "s"|| playerInput==="S" || playerInput === "south") {
+          		btnSouth_click();
+          	} else if (playerInput === "e"|| playerInput==="E" || playerInput === "east") {
+          		btnEast_click();
+          	} else if (playerInput === "w"|| playerInput==="W" || playerInput === "west") {
+          		btnWest_click();
+          	}
+         }
+
+         //
+         // Utility Function(s)
+         //
+         function displayMessage(msg) {
+            var target = document.getElementById("taMain");
+            target.value = msg + "\n\n" + target.value;
+         }
+      </script>
+   </head>
+   <body onload="init();">
+   	   <h1>
+			The Maze Sprinter 
+	   </h1>
+       <textarea id="taMain"
+                 style="width:550px;height:350px;font-family:monospace;font-size:100%"></textarea>
+       
+       <br>
+       Command:       
+       <input type="text" 
+              id = "txtCommand"
+              name="txtCommand">
+
+       <input type="button"
+              value="Go" 
+              onclick="btnGo_click();" />                           
+       
+       <br>
+       <input type="button"
+       		  id = "North" 
+              value="North"
+              onclick="btnNorth_click();">
+       <input type="button"
+       		  id = "South" 
+              value="South"
+              onclick="btnSouth_click();">
+       <input type="button"
+       		  id = "West" 
+              value="West"
+              onclick="btnWest_click();">
+       <input type="button"
+       		  id = "East" 
+              value="East"
+              onclick="btnEast_click();">
+         
+   </body>
+</html>
