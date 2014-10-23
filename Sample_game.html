@@ -19,18 +19,18 @@
 			//
 			// Global Variables
 			//         
-			var currentLoc = 0;
-			var score = 0;
-			var navigationErrorCount = 0;
-			var sarcasmThreshold = 5;
+			var currentLoc = 0; //Determines the current location of the player. 
+			var score = 0; //For score of player.
+			var navigationErrorCount = 0; //Used to count the number of times the player goes in the wrong direction.
+			var sarcasmThreshold = 5; //Determine the threshold for the number of wrong moves a player makes to activate something.
    	      
-			var hasVisitedLoc0 = false;
-			var hasVisitedLoc1 = false;
-			var hasVisitedLoc2 = false;
-			var hasVisitedLoc3 = false;
-			var hasVisitedLoc4 = false;
-			var hasVisitedLoc5 = false;
-			var hasVisitedLoc6 = false;  
+			var hasVisitedLoc0 = false; //Global variable to determine whether player has been in loc0.
+			var hasVisitedLoc1 = false; //Global variable to determine whether player has been in loc1.
+			var hasVisitedLoc2 = false; //Global variable to determine whether player has been in loc2.
+			var hasVisitedLoc3 = false; //Global variable to determine whether player has been in loc3.
+			var hasVisitedLoc4 = false; //Global variable to determine whether player has been in loc4.
+			var hasVisitedLoc5 = false; //Global variable to determine whether player has been in loc5.
+			var hasVisitedLoc6 = false; //Global variable to determine whether player has been in loc6.
                   
 			//
 			// Initialization
@@ -43,7 +43,7 @@
 			// Directional Button Event Handlers
 			//         
 		
-			function btnNorth_click() {
+			function btnNorth_click() { //This allows the player to go north when possible.
 				if (currentLoc === 0) {
 					currentLoc = 4;
 					look();               
@@ -58,73 +58,73 @@
 							currentLoc = 2;
 							look();      	               
 							} 
-								else {
+								else { //Displays the error message when the player goes the wrong way.
 								navigationError(); 
 								}
     	        		}		            
         	    	}
 	         }
 
-			function btnSouth_click() {
-				if (currentLoc === 0) {
+			function btnSouth_click() { //This allows the player to go south when possible.
+				if (currentLoc === 0) { //If the players current location is loc0, moving north would change their location to loc1.
 					currentLoc = 1;
 					look();
 				}
 					else {
-						if (currentLoc === 2) {
+						if (currentLoc === 2) { //If the players current location is loc2, moving north would change their location to loc6.
 						currentLoc = 6;
 						look();
 						} 
 							else {
-								if (currentLoc === 4) {
+								if (currentLoc === 4) { //If the players current location is loc4, moving north would change their location to loc0.
 								currentLoc = 0;
 								look();           
 								} 
-								else {
+								else { //Displays the error message when the player goes the wrong way.
 									navigationError(); 
 								}
             				}
 	         		}
     	     }
 
-			function btnEast_click() {
-				if (currentLoc === 0) {
+			function btnEast_click() { //This allows the player to go east when possible.
+				if (currentLoc === 0) { //If the players current location is loc0, moving north would change their location to loc3.
 					currentLoc = 3;
 					look();
 				} 
 					else {
-						if (currentLoc === 2) {
+						if (currentLoc === 2) { //If the players current location is loc2, moving north would change their location to loc3.
 						currentLoc = 3;
 						look();
 					}
 						else {
-							if (currentLoc === 5) {
+							if (currentLoc === 5) { //If the players current location is loc5, moving north would change their location to loc4.
 							currentLoc = 4;
 							look();
 							} 
-								else {
+								else { //Displays the error message when the player goes the wrong way.
 									navigationError(); 
 	              				}
 						}
 				}
 			}
 
-			function btnWest_click() {
-				if (currentLoc === 0) {
+			function btnWest_click() { //This allows the player to go west when possible.
+				if (currentLoc === 0) { //If the players current location is loc0, moving north would change their location to loc2.
 					currentLoc = 2;
 					look();
 				}
 					else {
-						if (currentLoc === 3) {
+						if (currentLoc === 3) { //If the players current location is loc3, moving north would change their location to loc0.
 							currentLoc = 0;
 							look();
 						}
 							else {
-								if (currentLoc === 4) {
+								if (currentLoc === 4) { //If the players current location is loc4, moving north would change their location to loc5.
 								currentLoc = 5;
 								look();
 								} 
-									else {
+									else { //Displays the error message when the player goes the wrong way.
 										navigationError(); 
 									}
 							}
@@ -133,9 +133,11 @@
 			//
 			//Event handlers for each location
 			//
-         
-			function theGlades() {
-				var message = "You awake unconscious in the Glade, a square shaped land mass surrounded by towering walls, with no memories except for your name. Within the glades is a whole community on its own with the little population calling themselves Gladers. You are told by the Gladers that the Glade is surrounded by a gigantic mechanical maze with mechanical creatures referred to as Grievers roaming at night. Every day when the gates open a group of two go out mapping the maze which changes its pattern every night trying to solve the maze, a task they have been trying to complete for two years. Supplies are brought to the Glade every week; whereas a new boy is sent through an elevator called the Box once every month (that's how you end up here). The day after you arrive in the Glade, a girl is sent with a message that read *this is the last one ever*, meaning unless the Gladers could find a way out of the Glade fast enough they would all die! That night, the gates leading out to the maze do not close and the Grievers make their way into the Glades killing a majority of the Gladers before retreating back into the maze. You are now being blamed for all this misfortune and have the task of solving the maze before anyone else is killed. Use the directional buttons below to navigate about the Glades. The destiny of the remaining Gladers is in your grasps. May the odds be in your favour.";
+         	//Functions here will handle the various locations of the game.
+         	//displayMessage(Message) enables message variables to be declared in the text area. 
+         	
+			function theGlades() { 
+				var message = "0. You're in the glade, a small square shaped living space in the middle of the maze. Is there any hope of ever escaping?";
 				displayMessage(message);
 			}
 		
@@ -155,12 +157,12 @@
 			}
 		
 			function sector4() {
-				var message = "Sector 4";
+				var message = "Certain you had found a way out, you go down an unusual path till you meet a dead-end. I advice you hed back before something *evil* has you trapped in!";
 				displayMessage(message);
 			}
 		
 			function sector5() {
-				var message = "Sector 5"; 
+				var message = "You make your your to a room within the walls of the maze. it just might seem you could escape. But guess what? You would never know until the next project! *Evil Laugh*"; 
 				displayMessage(message);
 			}
 		
@@ -174,57 +176,62 @@
 			//
 		
 			function look() {
-				document.getElementById("North").disabled = true;
+				var desc= "";
+				document.getElementById("North").disabled = true; //These disable all the buttons.
 	         	document.getElementById("South").disabled = true;
     	     	document.getElementById("East").disabled = true;
         	 	document.getElementById("West").disabled = true;
 				
-					switch(currentLoc) {
+					switch(currentLoc) { //This handles switching the text in the text area based on the position of the player.
 						case 0: theGlades();
-							document.getElementById("North").disabled = false;
-        	       			document.getElementById("South").disabled = false;
-            	   			document.getElementById("East").disabled = false;
-               				document.getElementById("West").disabled = false;
+							document.getElementById("North").disabled = false; //In the case that the button is required, they are activated here.
+        	       			document.getElementById("South").disabled = false; //In the case that the button is required, they are activated here.
+            	   			document.getElementById("East").disabled = false; //In the case that the button is required, they are activated here.
+               				document.getElementById("West").disabled = false; //In the case that the button is required, they are activated here.
                				break;
 						case 1: sector1();
-    	           			document.getElementById("North").disabled = false;
+    	           			document.getElementById("North").disabled = false; //In the case that the button is required, they are activated here.
 							break; 
             	   		case 2: sector2();
-               				document.getElementById("South").disabled = false;
-               				document.getElementById("East").disabled = false;
+               				document.getElementById("South").disabled = false; //In the case that the button is required, they are activated here.
+               				document.getElementById("East").disabled = false; //In the case that the button is required, they are activated here.
 							break;
 	               		case 3: sector3();
-    	           			document.getElementById("West").disabled = false;
+    	           			document.getElementById("West").disabled = false; //In the case that the button is required, they are activated here.
 							break;
             	   		case 4: sector4();
-               				document.getElementById("South").disabled = false;
-               				document.getElementById("West").disabled = false;
+               				document.getElementById("South").disabled = false; //In the case that the button is required, they are activated here.
+               				document.getElementById("West").disabled = false; //In the case that the button is required, they are activated here.
 							break;
 	               		case 5:  sector5();    
-    	           			document.getElementById("East").disabled = false;
+    	           			document.getElementById("East").disabled = false; //In the case that the button is required, they are activated here.
 							break;
             	   		case 6: sector6();
-               				document.getElementById("North").disabled = false;
+               				document.getElementById("North").disabled = false; //In the case that the button is required, they are activated here.
 							break;	
 	               		default: "You can't go there!! *Evil Laugh*";
     	        	}
+				checkScore(); //Calls the function responsible for calculating the score and displays it in the text area.
+				desc = desc + "\n" + "Score: " + score
+				displayMessage(desc);
 			}
+			
 
-			function navigationError() {
+			function navigationError() { //Handle error message in the case that the user goes the wrong way.
 				navigationErrorCount = navigationErrorCount + 1;
 				if (navigationErrorCount < sarcasmThreshold) {
-					displayMessage("You can't go there!! *Evil Laugh*");
+					displayMessage("You can't go there!! *Evil Laugh*"); //Default erro message.
 				}
 					else {
-						displayMessage("You really want to die mate! WTF");
+						displayMessage("You really want to die mate! WTF"); //If the user error movements are greater than the error threshold, this message is displayed.
             		}            
 	         }
 	
-			function checkScore() {
+			function checkScore() { // This function is responsible for calculating the score of the player.
 				if (! hasVisitedLoc0) {            
 					if (currentLoc === 0) {
-						score = score + 5;
-						hasVisitedLoc0 = true;
+						score = score + 5; //Adds a score of 5 points if the room is being visited for the first time.
+						hasVisitedLoc0 = true; //Changes the boolean of the location to "True" telling the script that the location has been visited already after adding 5 points.
 					}
 				} 
 						else if ( (! hasVisitedLoc1) && (currentLoc === 1) ) {            
@@ -242,10 +249,19 @@
 									else if ( (! hasVisitedLoc4) && (currentLoc === 4) ) {            
 										score = score + 5;
 										hasVisitedLoc4 = true;
-									}            
+									} 
+										else if ( (! hasVisitedLoc5) && (currentLoc === 3) ) {            
+											score = score + 5;
+											hasVisitedLoc5 = true;
+										}
+											else if ( (! hasVisitedLoc6) && (currentLoc === 4) ) {            
+												score = score + 5;
+												hasVisitedLoc6 = true;
+											} 
 				}
+				
          
-			function btnGo_click () {
+			function btnGo_click () { //Handles the logic to the text input box that allows users to input movement commands
 				var playerInput = document.getElementById("txtCommand").value;
   	        	if (playerInput === "n"|| playerInput==="N" || playerInput === "north") {
 					btnNorth_click();
@@ -307,9 +323,5 @@
 			id = "South" 
 			value="South"
 			onclick="btnSouth_click();">
-		<br>
-		Score <input type="text"
-				id="txtscore"
-				name="txtscore"/>
 	</body>
 </html>
